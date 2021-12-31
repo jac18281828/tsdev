@@ -11,7 +11,7 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /usr/local/nvm
 ENV NVM_DIR=/usr/local/nvm
 
-ENV NODE_VERSION=v17.3.0
+ENV NODE_VERSION=v16.13.1
 
 ADD https://raw.githubusercontent.com/creationix/nvm/master/install.sh /usr/local/etc/nvm/install.sh
 RUN bash /usr/local/etc/nvm/install.sh && \

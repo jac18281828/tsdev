@@ -21,10 +21,13 @@ ENV NVM_NODE_PATH ${NVM_DIR}/versions/node/${NODE_VERSION}
 ENV NODE_PATH ${NVM_NODE_PATH}/lib/node_modules
 ENV PATH      ${NVM_NODE_PATH}/bin:$PATH
 
+ARG TYPESCRIPT_VERSION=4.5.4
+
 RUN npm install -g npm
 RUN npm install typescript -g
-RUN npm install typescript@latest -g
+RUN npm install typescript@${TYPESCRIPT_VERSION} -g
 RUN npm install eslint -g
 
-CMD echo "TypeScript Dev"
+ENV TYPESCRIPT_VERSION=${TYPESCRIPT_VERSION}
+CMD echo "TypeScript Dev ${TYPESCRIPT_VERSION}"
 

@@ -25,7 +25,6 @@ ENV PATH      ${NVM_NODE_PATH}/bin:$PATH
 ARG TYPESCRIPT_VERSION=4.5.4
 
 RUN npm install -g npm@latest
-RUN npm install typescript -g
 RUN npm install typescript@${TYPESCRIPT_VERSION} -g
 RUN npm install eslint -g
 

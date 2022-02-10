@@ -4,10 +4,14 @@ FROM debian:${VERSION}
 RUN export DEBIAN_FRONTEND=noninteractive && \
         apt update && \
         apt install -y -q --no-install-recommends \
+        sudo \
         npm build-essential git curl ca-certificates apt-transport-https
-
 RUN apt clean
 RUN rm -rf /var/lib/apt/lists/*
+
+RUN adduser jac
+RUN adduser jac sudo
+RUN echo '%jac ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN mkdir -p /usr/local/nvm
 ENV NVM_DIR=/usr/local/nvm
@@ -24,7 +28,7 @@ ENV PATH      ${NVM_NODE_PATH}/bin:$PATH
 
 ARG TYPESCRIPT_VERSION=4.5.4
 
-RUN npm install -g npm@latest
+RUN npm install npm -g
 RUN npm install typescript@${TYPESCRIPT_VERSION} -g
 RUN npm install eslint -g
 

@@ -4,7 +4,7 @@ FROM debian:${VERSION}
 RUN export DEBIAN_FRONTEND=noninteractive && \
         apt update && \
         apt install -y -q --no-install-recommends \
-        sudo \
+        sudo git \
         npm build-essential git curl ca-certificates apt-transport-https
 RUN apt clean
 RUN rm -rf /var/lib/apt/lists/*

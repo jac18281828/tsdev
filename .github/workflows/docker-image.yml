@@ -21,8 +21,9 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}        
     - name: Build the Docker image
       run:
-        docker build . --file Dockerfile --tag jac18281828/${{github.event.repository.name}}:$(date +%m%d%y)
+        docker build . --file Dockerfile --tag jac18281828/${{github.event.repository.name}}:$(date +%m%d%y)-${GITHUB_SHA::10}
     - name: Push the image (release)
       run: |
-        docker tag jac18281828/${{github.event.repository.name}}:$(date +%m%d%y) jac18281828/${{github.event.repository.name}}:latest
+        docker tag jac18281828/${{github.event.repository.name}}:$(date +%m%d%y)-${GITHUB_SHA::10} jac18281828/${{github.event.repository.name}}:latest
         docker push jac18281828/${{github.event.repository.name}}
+      if: ${{ github.event_name == 'release' && github.event.action == 'created' }}

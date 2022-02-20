@@ -16,7 +16,7 @@ RUN echo '%jac ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN mkdir -p /usr/local/nvm
 ENV NVM_DIR=/usr/local/nvm
 
-ENV NODE_VERSION=v16.13.1
+ENV NODE_VERSION=v14.17.6
 
 ADD https://raw.githubusercontent.com/creationix/nvm/master/install.sh /usr/local/etc/nvm/install.sh
 RUN bash /usr/local/etc/nvm/install.sh && \
@@ -26,7 +26,7 @@ ENV NVM_NODE_PATH ${NVM_DIR}/versions/node/${NODE_VERSION}
 ENV NODE_PATH ${NVM_NODE_PATH}/lib/node_modules
 ENV PATH      ${NVM_NODE_PATH}/bin:$PATH
 
-ARG TYPESCRIPT_VERSION=4.5.4
+ARG TYPESCRIPT_VERSION=4.5.5
 
 RUN npm install npm -g
 RUN npm install typescript@${TYPESCRIPT_VERSION} -g

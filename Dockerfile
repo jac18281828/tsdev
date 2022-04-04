@@ -2,10 +2,11 @@ ARG VERSION=stable-slim
 FROM debian:${VERSION}
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
-        apt update && \
-        apt install -y -q --no-install-recommends \
-        sudo git \
-        npm build-essential git curl ca-certificates apt-transport-https
+    apt update && \
+    apt install -y -q --no-install-recommends \
+    sudo git \
+    npm build-essential git curl ca-certificates apt-transport-https \
+    ripgrep
 RUN apt clean
 RUN rm -rf /var/lib/apt/lists/*
 

@@ -27,9 +27,10 @@ ENV NVM_NODE_PATH ${NVM_DIR}/versions/node/${NODE_VERSION}
 ENV NODE_PATH ${NVM_NODE_PATH}/lib/node_modules
 ENV PATH      ${NVM_NODE_PATH}/bin:$PATH
 
-ARG TYPESCRIPT_VERSION=4.5.5
+ARG TYPESCRIPT_VERSION=4.6.4
 
 RUN npm install npm -g
+RUN npm install yarn -g
 RUN npm install typescript@${TYPESCRIPT_VERSION} -g
 RUN npm install eslint -g
 

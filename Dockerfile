@@ -1,5 +1,4 @@
-ARG VERSION=stable-slim
-FROM debian:${VERSION}
+FROM debian:stable-slim
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
@@ -30,5 +29,14 @@ ENV PATH      ${NVM_NODE_PATH}/bin:$PATH
 RUN npm install npm -g
 RUN npm install yarn -g
 
-CMD echo "TypeScript Dev"
+LABEL org.label-schema.build-date=$BUILD_DATE \
+    org.label-schema.name="tsdev" \
+    org.label-schema.description="TypeScript Development Container" \
+    org.label-schema.url="https://github.com/jac18281828/tsdev" \
+    org.label-schema.vcs-ref=$VCS_REF \
+    org.label-schema.vcs-url="git@github.com:jac18281828/tsdev.git" \
+    org.label-schema.vendor="John Cairns" \
+    org.label-schema.version=$VERSION \
+    org.label-schema.schema-version="1.0"
+
 

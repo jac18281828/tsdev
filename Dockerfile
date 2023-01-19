@@ -3,11 +3,10 @@ FROM debian:stable-slim
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
     apt install -y -q --no-install-recommends \
-    sudo git \
     npm build-essential git curl ca-certificates apt-transport-https \
-    ripgrep
-RUN apt clean
-RUN rm -rf /var/lib/apt/lists/*
+    sudo ripgrep && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN useradd --create-home -s /bin/bash jac
 RUN usermod -a -G sudo jac

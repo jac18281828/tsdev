@@ -16,7 +16,7 @@ RUN echo '%jac ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN mkdir -p /usr/local/nvm
 ENV NVM_DIR=/usr/local/nvm
 
-ENV NODE_VERSION=v18.12.1
+ENV NODE_VERSION=v18.13.0
 
 ADD https://raw.githubusercontent.com/creationix/nvm/master/install.sh /usr/local/etc/nvm/install.sh
 RUN bash /usr/local/etc/nvm/install.sh && \

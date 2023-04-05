@@ -40,6 +40,18 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and Push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64/v8
+          push: ${{ github.event_name == 'release' && github.event.action == 'published' }}
+          build-args: |
+            VERSION=${{ github.event.release.tag_name }}
+          tags: |
+            ${{ env.REPOSITORY_PATH }}:v${{ github.event.release.tag_name }}
+            ${{ env.REPOSITORY_PATH }}:${{ env.REPOSITORY_SHA }}
+            ${{ env.REPOSITORY_PATH }}:latest
       -
         name: GitHub Release
         uses: actions/create-release@v1
@@ -51,15 +63,3 @@ jobs:
           body_path: CHANGELOG.md
           draft: false
           prerelease: false        
-      - name: Build and Push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64/v8
-          push: ${{ github.event_name == 'release' && github.event.action == 'created' }}
-          build-args: |
-            VERSION=${{ github.event.release.tag_name }}
-          tags: |
-            ${{ env.REPOSITORY_PATH }}:v${{ github.event.release.tag_name }}
-            ${{ env.REPOSITORY_PATH }}:${{ env.REPOSITORY_SHA }}
-            ${{ env.REPOSITORY_PATH }}:latest

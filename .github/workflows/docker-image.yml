@@ -1,15 +1,9 @@
-name: Docker Image CI
+name: Docker Image Build Push
 
 on:
-  workflow_dispatch:
-  pull_request:
-    branches:
-      - main
   push:
-    branches:
+    tags:
       - "*"
-  release:
-    types: [created]
 
 concurrency:
   group: "docker-image"
@@ -58,3 +52,14 @@ jobs:
             ${{ env.REPOSITORY_PATH }}:v${{ github.event.release.tag_name }}
             ${{ env.REPOSITORY_PATH }}:${{ env.REPOSITORY_SHA }}
             ${{ env.REPOSITORY_PATH }}:latest
+      -
+        name: GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body_path: CHANGELOG.md
+          draft: false
+          prerelease: false        

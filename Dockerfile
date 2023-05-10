@@ -3,7 +3,8 @@ FROM debian:stable-slim
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
     apt install -y -q --no-install-recommends \
-    npm build-essential git curl ca-certificates apt-transport-https \
+    npm build-essential git curl gnupg2 \
+    ca-certificates apt-transport-https \
     sudo ripgrep && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*

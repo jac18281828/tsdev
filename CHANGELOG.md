@@ -1,3 +1,7 @@
+# 18.16.0_2 (2023-06-01)
+
+* set DESCRIPTION label
+
 # 18.16.0_1 (2023-05-10)
 
 * include gpg for codespaces

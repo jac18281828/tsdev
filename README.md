@@ -27,7 +27,7 @@ To use this development container in Visual Studio Code, specify the `Dockerfile
 ```
 FROM jac18281828/tsdev:latest
 
-COPY . .
+COPY --chown=jac:jac . .
 
 USER jac
 ```

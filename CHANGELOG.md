@@ -1,3 +1,8 @@
+# 22.9.0 (2024-10-08)
+
+* Node 22.9.0
+* reduce size of distribution
+
 # 22.3.0 (2024-07-02)
 
 * Node 22.3.0

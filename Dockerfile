@@ -3,7 +3,7 @@ FROM debian:stable-slim
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
     apt install -y -q --no-install-recommends \
-    npm build-essential git curl gnupg2 \
+    npm git curl gnupg2 \
     ca-certificates apt-transport-https \
     sudo ripgrep && \
     apt clean && \
@@ -16,7 +16,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN mkdir -p /usr/local/nvm
 ENV NVM_DIR=/usr/local/nvm
 
-ENV NODE_VERSION=v22.3.0
+ENV NODE_VERSION=v22.9.0
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 RUN bash -c ". $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default"

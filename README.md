@@ -27,9 +27,9 @@ To use this development container in Visual Studio Code, specify the `Dockerfile
 ```
 FROM jac18281828/tsdev:latest
 
-COPY --chown=jac:jac . .
+COPY --chown=tsdev:tsdev . .
 
-USER jac
+USER tsdev
 ```
 
 Also available from [GitHub GHCR](https://github.com/jac18281828/tsdev/pkgs/container/tsdev)

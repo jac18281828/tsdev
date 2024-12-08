@@ -38,16 +38,15 @@ RUN mkdir -p /usr/local/nvm
 ENV NVM_DIR=/usr/local/nvm
 
 ENV NODE_VERSION=v22.11.0
-
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
-RUN bash -c ". $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default"
-
+ENV NVM_DIR=/usr/local/nvm
 ENV NVM_NODE_PATH=${NVM_DIR}/versions/node/${NODE_VERSION}
 ENV NODE_PATH=${NVM_NODE_PATH}/lib/node_modules
-ENV PATH=${NVM_NODE_PATH}/bin:$PATH:/go/bin
-
-RUN npm install npm -g
-RUN npm install yarn -g
+ENV PATH=${NVM_NODE_PATH}/bin:$PATH
+RUN mkdir -p ${NVM_DIR} && \
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash && \
+    bash -c ". $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default" && \
+    npm install npm -g && \
+    npm install yarn -g
 
 LABEL \
     org.label-schema.name="tsdev" \

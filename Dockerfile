@@ -52,6 +52,8 @@ RUN npm install yarn -g
 # Install Bun
 ADD --chown=${USER}:${USER} --chmod=555 https://bun.sh/install /bun/install.sh
 
+USER tsdev
+
 RUN /bun/install.sh && \
     sudo rm -rf /bun
 
